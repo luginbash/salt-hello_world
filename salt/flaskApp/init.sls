@@ -29,6 +29,7 @@ uwsgi-plugin-python:
     - require: 
       - git: {{ repo }}
       - pkg: nginx
+/var/www:
   file.directory:
     - user: {{ user }}
     - group: {{ group }}
