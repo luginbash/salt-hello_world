@@ -16,7 +16,7 @@ nginx:
     - template: jinja
     - require:
       - pkg: nginx
-/etc/nginx/sites-available/{{ app }}:
+/etc/nginx/sites-enabled/{{ app }}:
   file.symlink:
     - target: /etc/nginx/sites-available/{{ app }}
 
