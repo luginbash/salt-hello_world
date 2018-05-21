@@ -11,7 +11,8 @@ uwsgi:
   pkg.installed: []
 redis:
   pkg.installed: []
-
+nginx:
+  pkg.installed: []
 
 {{ repo }}:
   git.latest:
