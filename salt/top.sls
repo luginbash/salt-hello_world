@@ -1,6 +1,6 @@
 base:
   '*':
     - default
-  'sjc1m1':
+  'exp*':
     - flaskApp
     - tensorflow-serving
