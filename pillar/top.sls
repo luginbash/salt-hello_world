@@ -4,3 +4,4 @@ base:
   'exp*':
     - flaskApp
     - tensorflow-serving
+    - nginx

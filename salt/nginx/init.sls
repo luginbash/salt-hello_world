@@ -29,16 +29,6 @@ enable-wsgi-site:
     - makedirs: True
     - pkg: nginx
 
-/etc/nginx/nginx.conf:
-  file.managed:
-    - template: jinja
-    - user: root
-    - group: root
-    - mode: 644
-    - source: salt://templates/nginx.conf.j2
-    - require:
-      - file: /etc/nginx
-
 nginx:
   pkg.installed: []
   service.running:
