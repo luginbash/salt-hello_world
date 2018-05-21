@@ -7,7 +7,7 @@
 nginx:
   pkg.installed: []
   service.running:
-    - enabled: true
+    - enable: true
     - watch:
       - file: /etc/nginx/sites-available/{{ app }}
 /etc/nginx/sites-available/{{ app }}:
