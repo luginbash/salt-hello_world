@@ -26,6 +26,7 @@ redis:
     - requirements: {{ prefix }}/{{ app }}/requirements.txt
     - require: 
       - git: {{ repo }}
+      - nginx
   file.directory:
     - user: {{ user }}
     - group: {{ group }}
