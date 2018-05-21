@@ -9,8 +9,6 @@ virtualenv:
   pkg.installed: []
 uwsgi:
   pkg.installed: []
-pip:
-  pkg.installed: []
 redis:
   pkg.installed: []
 
