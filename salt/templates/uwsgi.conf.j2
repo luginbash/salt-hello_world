@@ -1,5 +1,4 @@
 {% set app = salt['pillar.get']('app:app_name') %}
-{% set http_port = salt['pillar.get']('app:http_port') %}
 {% set user = salt['pillar.get']('app:user') %}
 {% set group = salt['pillar.get']('app:group') %}
 
@@ -9,7 +8,6 @@ module          = app:app
 home            = /var/www/{{ app }}
 master          = false
 socket          = /run/{{ app }}/uwsgi.sock
-http            = {{ http_port }}
 chmod-socket    = 666
 processes       = 1
 threads         = 1

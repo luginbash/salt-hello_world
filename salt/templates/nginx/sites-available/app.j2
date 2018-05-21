@@ -3,7 +3,6 @@
 
 upstream {{ app }} {
   server unix:///run/{{ app }}/uwsgi.sock;
-  server 127.0.0.1:9001
 }
 
 server {
