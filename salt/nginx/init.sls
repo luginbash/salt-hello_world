@@ -9,7 +9,7 @@ nginx:
   service.running:
     - enabled: true
     - watch:
-      - file: flaskApp-sitedef
+      - file: /etc/nginx/sites-available/{{ app }}
 /etc/nginx/sites-available/{{ app }}:
   file.managed:
     - source: salt://templates/nginx/sites-available/app.j2
