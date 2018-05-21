@@ -6,5 +6,5 @@ tf-serving-repo:
 
 tensorflow-model-server:
   pkg.installed: []
-  require: 
-    pkgrepo: tf-serving-repo
+  require:
+    - pkgrepo: tf-serving-repo
