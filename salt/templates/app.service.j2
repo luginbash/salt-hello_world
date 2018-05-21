@@ -1,0 +1,22 @@
+{% set app = salt['pillar.get']('app:app_name') %}
+{% set prefix = salt['pillar.get']('app:prefix') %}
+{% set user = salt['pillar.get']('app:user') %}
+{% set group = salt['pillar.get']('app:group') %}
+
+[Unit]
+Description=uWSGI {{ app }}
+After=syslog.target
+
+[Service]
+ExecStart=/usr/bin/uwsgi --ini {{ prefix }}/{{app}}/uwsgi.conf
+RuntimeDirectory={{ app }}
+User={{ user }}
+Group={{ group }}
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
