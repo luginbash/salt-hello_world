@@ -20,13 +20,14 @@ redis:
     - user: {{ user }}
     - require:
       - pkg: git
+      - 
 {{ prefix }}/{{ app }}:
   virtualenv.managed:
     - system_site_packages: False
     - requirements: {{ prefix }}/{{ app }}/requirements.txt
     - require: 
       - git: {{ repo }}
-      - nginx
+      - pkg.installed: nginx
   file.directory:
     - user: {{ user }}
     - group: {{ group }}
