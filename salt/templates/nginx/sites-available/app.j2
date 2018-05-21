@@ -1,0 +1,16 @@
+{% set app = salt['pillar.get']('app:app_name') %}
+{% set http_port = salt['pillar.get']('app:http_port') %}
+
+upstream {{ app }} {
+  server unix:///run/{{ app }}/uwsgi.sock;
+  server 127.0.0.1:9001
+}
+
+server {
+  listen port {{ http_port }} default_server;
+  access_log /var/log/{{ app }}}/access_log;
+  location / {
+    uwsgi_pass {{ app }};
+    include uwsgi_params;
+  }
+}
