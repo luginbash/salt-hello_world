@@ -16,10 +16,7 @@ nginx:
     - template: jinja
     - require:
       - pkg: nginx
-
-{% if not salt['file.exists' ]('/etc/nginx/sites-enabled/{{ app }}') %}
 /etc/nginx/sites-available/{{ app }}:
   file.symlink:
     - target: /etc/nginx/sites-available/{{ app }}
-{% endif %}
 
