@@ -17,6 +17,7 @@ redis:
     - rev: master
     - target: {{ prefix }}/{{ app }}
     - user: {{ user }}
+    - force_reset: True
     - require:
       - pkg: git
 {{ prefix }}/{{ app }}:
