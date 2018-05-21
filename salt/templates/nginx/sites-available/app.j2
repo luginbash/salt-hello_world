@@ -7,7 +7,7 @@ upstream {{ app }} {
 
 server {
   listen {{ http_port }} default_server;
-  access_log /var/log/{{ app }}}/access_log;
+  access_log /var/log/nginx/{{ app }}.access.log;
   location / {
     uwsgi_pass {{ app }};
     include uwsgi_params;
