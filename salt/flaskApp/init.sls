@@ -14,7 +14,7 @@ redis:
 
 {{ repo }}:
   git.latest:
-    - rev: prod
+    - rev: master
     - target: {{ prefix }}/{{ app }}
     - user: {{ user }}
     - require:

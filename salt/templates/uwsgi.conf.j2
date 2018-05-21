@@ -4,15 +4,14 @@
 
 [uwsgi]
 chdir           = /var/www/{{ app }}
-module          = app:app
+module          = app
+callable        = app
 home            = /var/www/{{ app }}
-master          = false
+master          = true
 socket          = /run/{{ app }}/uwsgi.sock
 chmod-socket    = 666
 processes       = 1
-threads         = 1
 uid             = {{ user }}
 gid             = {{ group }}
 vacuum          = true
-enable-threads  = true
 pidfile         = /run/{{ app }}/uwsgi.pid
