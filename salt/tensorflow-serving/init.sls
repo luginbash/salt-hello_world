@@ -4,7 +4,6 @@ tf-serving-repo:
         - key_url: https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg
         - name: deb [arch=amd64] http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal
 
-tf-serving:
-    pkg.installed: 
-        - fromrepo: tf-serving-repo
-        
+tensorflow-model-server:
+    pkg.installed: []
+    require: tf-serving-repo
