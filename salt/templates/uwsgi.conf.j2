@@ -1,7 +1,7 @@
 {% set app = salt['pillar.get']('app:app_name') %}
 {% set user = salt['pillar.get']('app:user') %}
 {% set group = salt['pillar.get']('app:group') %}
-
+{% set prefix = salt['pillar.get']('app:prefix') %}
 [uwsgi]
 chdir           = /var/www/{{ app }}
 module          = app
@@ -15,3 +15,4 @@ uid             = {{ user }}
 gid             = {{ group }}
 vacuum          = true
 pidfile         = /run/{{ app }}/uwsgi.pid
+virtualenv      = {{ prefix }}/{{ app }}

@@ -26,12 +26,14 @@ uwsgi-plugin-python:
   virtualenv.managed:
     - system_site_packages: False
     - requirements: {{ prefix }}/{{ app }}/requirements.txt
+    - cwd: {{ prefix }}/{{ app }}/bin
     - require: 
       - git: {{ repo }}
       - pkg: nginx
   file.directory:
     - user: {{ user }}
     - group: {{ group }}
+    - makedirs: True
     - recurse:
       - user
       - group
