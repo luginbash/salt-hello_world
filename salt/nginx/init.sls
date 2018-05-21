@@ -1,13 +1,24 @@
-wsgi-description:
-  file.managed:
-    - name: /etc/nginx/sites-available/wsgi
-    - source: salt://wsgi
+{% set app = salt['pillar.get']('app:app_name') %}
+{% set http_port = salt['pillar.get']('app:http_port') %}
+{% set user = salt['pillar.get']('app:user') %}
+{% set group = salt['pillar.get']('app:group') %}
+{% set prefix = salt['pillar.get']('app:prefix') %}
 
-{% if not salt['file.exists' ]('/etc/nginx/sites-enabled/wsgi') %}
+nginx:
+  pkg.installed: []
+
+
+flaskApp-sitedef:
+  file.managed:
+    - name: /etc/nginx/sites-available/{{ app }}
+    - source: salt://templates/nginx/sites-available/app.j2
+    - template: jinja
+
+{% if not salt['file.exists' ]('/etc/nginx/sites-enabled/{{ app }}') %}
 enable-wsgi-site:
   file.symlink:
-    - name: /etc/nginx/sites-enabled/wsgi
-    - target: /etc/nginx/sites-available/wsgi
+    - name: /etc/nginx/sites-enabled/{{ app }}
+    - target: /etc/nginx/sites-available/{{ app }}
 {% endif %}
 
 /var/www:
@@ -19,33 +30,19 @@ enable-wsgi-site:
     - makedirs: True
     - pkg: nginx
 
-/etc/nginx:
-  file.directory:
-    - user: root
-    - group: root
-    - makedirs: True
-
 /etc/nginx/nginx.conf:
   file.managed:
     - template: jinja
     - user: root
     - group: root
     - mode: 644
-    - source: salt://nginx/templates/nginx.conf.j2
+    - source: salt://templates/nginx.conf.j2
     - require:
       - file: /etc/nginx
-
-{% for dir in ('sites-enabled', 'sites-available') %}
-/etc/nginx/{{ dir }}:
-  file.directory:
-    - user: root
-    - group: root
-{% endfor -%}
-{% endif %}
 
 nginx:
   pkg.installed: []
   service.running:
+    - enabled: true
     - watch:
-      - file: wsgi-description
-  service.enabled: []
+      - file: flaskApp-sitedef

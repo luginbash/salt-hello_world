@@ -11,6 +11,10 @@ uwsgi:
   pkg.installed: []
 pip:
   pkg.installed: []
+rq:
+  pkg.installed: []
+reddit:
+  pkg.installed: []
 
 
 {{ repo }}:
