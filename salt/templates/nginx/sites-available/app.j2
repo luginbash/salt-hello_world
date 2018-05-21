@@ -6,7 +6,7 @@ upstream {{ app }} {
 }
 
 server {
-  listen port {{ http_port }} default_server;
+  listen {{ http_port }} default_server;
   access_log /var/log/{{ app }}}/access_log;
   location / {
     uwsgi_pass {{ app }};
