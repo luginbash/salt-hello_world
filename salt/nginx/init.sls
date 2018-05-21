@@ -7,7 +7,6 @@
 nginx:
   pkg.installed: []
 
-
 flaskApp-sitedef:
   file.managed:
     - name: /etc/nginx/sites-available/{{ app }}
