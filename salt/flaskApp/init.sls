@@ -21,7 +21,6 @@ nginx:
     - user: {{ user }}
     - require:
       - pkg: git
-      - {{ prefix }}/{{ app }}
 {{ prefix }}/{{ app }}:
   virtualenv.managed:
     - system_site_packages: False
