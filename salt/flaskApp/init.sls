@@ -11,8 +11,6 @@ uwsgi:
   pkg.installed: []
 redis:
   pkg.installed: []
-uwsgi-plugin-python:
-  pkg.installed: []
 
 {{ repo }}:
   git.latest:
