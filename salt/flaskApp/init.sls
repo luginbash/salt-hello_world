@@ -27,7 +27,7 @@ redis:
     - requirements: {{ prefix }}/{{ app }}/requirements.txt
     - require: 
       - git: {{ repo }}
-      - pkg.installed: nginx
+      - pkg: nginx
   file.directory:
     - user: {{ user }}
     - group: {{ group }}
