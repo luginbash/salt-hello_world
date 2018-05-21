@@ -1,4 +1,4 @@
 vim:
   pkg.installed: []
 git:
-  pkg.installed: []:
+  pkg.installed: []
