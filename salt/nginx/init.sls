@@ -10,13 +10,13 @@ nginx:
     - enable: true
     - watch:
       - file: /etc/nginx/sites-enabled/{{ app }}
-/etc/nginx/sites-available/{{ app }}:
   file.managed:
+    - name: /etc/nginx/sites-available/{{ app }}
     - source: salt://templates/nginx/sites-available/app.j2
     - template: jinja
     - require:
-      - pkg: nginx
-/etc/nginx/sites-enabled/{{ app }}:
+      - pkg: nginx:
   file.symlink:
+    - name: /etc/nginx/sites-enabled/{{ app }}
     - target: /etc/nginx/sites-available/{{ app }}
 
