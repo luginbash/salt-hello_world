@@ -9,7 +9,7 @@ nginx:
   service.running:
     - enable: true
     - watch:
-      - file: /etc/nginx/sites-available/{{ app }}
+      - file: /etc/nginx/sites-enabled/{{ app }}
 /etc/nginx/sites-available/{{ app }}:
   file.managed:
     - source: salt://templates/nginx/sites-available/app.j2
