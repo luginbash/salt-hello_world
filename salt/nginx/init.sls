@@ -6,10 +6,6 @@
 
 nginx:
   pkg.installed: []
-  service.running:
-    - enable: true
-    - watch:
-      - file: /etc/nginx/sites-enabled/{{ app }}
   file.managed:
     - name: /etc/nginx/sites-available/{{ app }}
     - source: salt://templates/nginx/sites-available/app.j2
@@ -19,4 +15,8 @@ nginx:
   file.symlink:
     - name: /etc/nginx/sites-enabled/{{ app }}
     - target: /etc/nginx/sites-available/{{ app }}
+  service.running:
+    - enable: true
+    - watch:
+      - file: /etc/nginx/sites-enabled/{{ app }}
 
