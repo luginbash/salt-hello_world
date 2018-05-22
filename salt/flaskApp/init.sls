@@ -31,11 +31,18 @@ app_payload:
     - source_hash: {{ hash }}
     - user: {{ user }}
     - group: {{ group }}
-{{ prefix }}/{{ app }}/uwsgi.conf:
+/etc/uwsgi:
+  file.directory:
+    - managed: []
+    - user: {{ user }}
+    - group: {{ group }}
+    - mode: 750
+    - makedirs: True
+/etc/uwsgi/{{ app }}.ini:
   file.managed:
     - user: {{ user }}
     - group: {{ group }}
-    - source: salt://templates/uwsgi.conf.j2
+    - source: salt://templates/uwsgi-app.ini.j2
     - template: jinja
     - require:
       - virtualenv: {{ prefix }}/{{ app }}
@@ -51,4 +58,4 @@ app_payload:
     - require: 
       - file: /lib/systemd/system/{{ app }}.service
     - watch:
-      - file: {{ prefix }}/{{ app }}/uwsgi.conf
+      - file: /etc/uwsgi/{{ app }}.ini

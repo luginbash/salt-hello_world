@@ -8,7 +8,7 @@ Description=uWSGI {{ app }}
 After=syslog.target
 
 [Service]
-ExecStart=/usr/bin/uwsgi --ini {{ prefix }}/{{app}}/uwsgi.conf
+ExecStart=/usr/bin/uwsgi --ini /etc/uwsgi/{{ app }}.ini
 RuntimeDirectory={{ app }}
 User={{ user }}
 Group={{ group }}
