@@ -6,14 +6,15 @@
 {% set hash = salt['pillar.get']('app:archive_hash') %}
 {% set archive_name = salt['pillar.get']('app:archive_name') %}
 
-virtualenv:
-  pkg.installed: []
-uwsgi:
-  pkg.installed: []
-redis:
-  pkg.installed: []
-uwsgi-plugin-python:
-  pkg.installed: []
+app_prerequisites:
+  pkg.installed:
+    - pkgs:
+      - virtualenv
+      - redis
+      - uwsgi
+      - uwsgi-plugin-python
+      - python-dev
+      - build-essential
 
 {{ prefix }}/{{ app }}:
   virtualenv.managed:
