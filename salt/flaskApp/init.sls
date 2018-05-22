@@ -15,6 +15,7 @@ app_prerequisites:
       - uwsgi-plugin-python
       - python-dev
       - build-essential
+      - nginx
 
 {{ prefix }}/{{ app }}:
   virtualenv.managed:
