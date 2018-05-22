@@ -83,4 +83,4 @@ nginx-config-test:
   module.wait:
     - name: nginx.configtest
     - watch:
-    - file: /etc/nginx/sites-available/*
+      - file: /etc/nginx/sites-available/*
