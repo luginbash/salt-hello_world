@@ -61,7 +61,6 @@ app_payload:
       - file: /lib/systemd/system/{{ app }}.service
     - watch:
       - file: /etc/uwsgi/{{ app }}.ini
-
 /etc/nginx/sites-available/{{ app }}:
   file.managed:
     - source: salt://templates/nginx/sites-available/app.j2
@@ -71,7 +70,8 @@ app_payload:
 /etc/nginx/sites-enabled/{{ app }}:
   file.symlink:
     - target: /etc/nginx/sites-available/{{ app }}
-    - require: /etc/nginx/sites-available/{{ app }}
+    - require: 
+      - file: /etc/nginx/sites-available/{{ app }}
 reload-nginx:
   service.running:
     - name: nginx
@@ -83,4 +83,4 @@ nginx-config-test:
   module.wait:
     - name: nginx.configtest
     - watch:
-      - file: /etc/nginx/sites-available/*
+    - file: /etc/nginx/sites-available/*
