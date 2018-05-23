@@ -10,7 +10,7 @@ app_prerequisites:
   pkg.installed:
     - pkgs:
       - virtualenv
-      - redis
+      - redis-server
       - uwsgi
       - uwsgi-plugin-python
       - python-dev
