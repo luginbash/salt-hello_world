@@ -2,6 +2,7 @@ base:
   '*':
     - default
   'exp*':
-    - flaskApp
-    - tensorflow-serving
+    - saltstack
     - nginx
+    - tensorflow-serving
+    - flaskApp
