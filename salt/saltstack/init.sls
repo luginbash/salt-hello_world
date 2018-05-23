@@ -8,4 +8,4 @@ salt-minion:
     pkg.installed: []
     service.running:
         - enable: True
-        - reload: True
+        - full_restart: True
