@@ -5,7 +5,8 @@ saltstack.repo:
         - file: /etc/apt/sources.list.d/saltstack.list
         - refresh_db: true
 salt-minion:
-    pkg.installed: []
+    pkg.installed: 
+        - force_conf_old: True
     service.running:
         - enable: True
         - full_restart: True
